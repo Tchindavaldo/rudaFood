@@ -1,0 +1,154 @@
+ion-grid>ion-row:nth-child(9) ion-label {
+    border-bottom: 0px solid darkred;
+    border-bottom: 0px solid white;
+    font-size: 13px;
+    // position: fixed;
+    bottom: 60px;
+    color: white;
+}
+
+    ion-grid>ion-row:nth-child(4),
+    :nth-child(9) {
+        margin-top: 9px;
+    } 
+    .col-inscrip{
+        padding-top: 9px;
+    }
+    ion-col.col-label-inscription {
+        padding-top: 9px;
+    }
+    
+    .col-fogotPsswrd{
+        padding-bottom: 9px;
+    }
+    ion-grid>ion-row:nth-child(7) ion-label {
+
+
+        font-size: 0.875rem;
+        color: var(--ion-card-color, var(--ion-item-color, var(--ion-color-step-600, var(--ion-text-color-step-400, #666666))));
+     }
+    
+    ion-button {
+
+        --border-radius: 10px;
+        width: 35px;
+        --background: darkred;
+        height: 35px;
+        min-height: 35px;
+    }
+    
+    ion-grid>ion-row:nth-child(6)
+ {
+
+    font-size: 10px;
+    color: white;
+ }
+    ion-grid>ion-row:nth-child(1) ion-label {
+        // display: flex;
+        justify-content: center;
+        color:white; 
+        /* background-color: darkred; */
+        border-radius: 25px;
+    }
+    ion-grid>ion-row:nth-child(1) ion-label {
+    font-size: 50px;
+}
+ 
+ion-grid>ion-row:nth-child(2) {
+    margin-top: 40px;
+}
+
+ion-grid>ion-row:nth-child(2) ion-label {
+    font-size: 20px;
+    font-weight: bold;
+    color:white;
+}
+
+ion-grid>ion-row:nth-child(3) {
+    margin-top: 5px;
+}
+.ion-input {
+    --border-radius: 20px;
+    --padding-start: 40px;
+    // --border-color: darkred;
+    --border-color: rgba(139, 0, 0, 0);
+    --border-width: 1px;
+    // --background: #ffffffad;
+    --background: #e4e4e400;
+    border-bottom: 0.001px solid #ffffff59;
+    height: 60px;
+    min-height: 40px;
+}
+
+.row-connect-label{
+    margin-top: 20px;
+} 
+.col-other-connect{
+display: none;
+}
+ion-chip{    box-shadow: 0px 0px 9px rgb(255, 157, 157);
+    background: darkred;
+    padding: 0px 7px;
+}
+ion-chip ion-label{   
+    font-size: 9px;    color: white;
+
+}
+.col-label-inscription2{
+    display: none;
+    }
+
+.col-btn-connect{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-height:700px){
+    ion-grid{
+        // height: 201px;
+    }
+    ion-button {
+        --border-radius: 10px;
+        width: 35px;
+        // --background: rgb(19, 139, 0);
+        height: 35px;
+        min-height: 35px;
+    }
+    span, .row-otherConnect , .row-connect-label{
+     display: none;
+    }
+
+    ion-grid  { 
+        margin-top: -60px;
+    }
+    .col-other-connect{
+         display: flex;
+        padding-bottom: 15px;
+        font-size: xx-large;
+
+        }
+}
+
+@media(max-height:500px){
+  
+    span, .row-otherConnect,.col-label-inscription , .row-connect-label{
+     display: none;
+    }
+ 
+    ion-grid   > ion-row:nth-child(1) {
+        
+        display: none;
+    }
+    .col-other-connect,  .col-label-inscription2{
+        display: flex;
+        }
+  .row-inscription{
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ion-grid  { 
+    margin-top: -30px;
+}
+}

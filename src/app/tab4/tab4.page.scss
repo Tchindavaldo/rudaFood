@@ -1,0 +1,32 @@
+.col-porteFeuille{
+    margin-top: -10px;
+    margin-left: -8px;
+    }
+
+    ion-header{
+        box-shadow: none;
+    }
+
+    ion-card{
+        height: max-content;
+    background-color: rgba(37, 36, 36, 0);
+    color: rgba(0, 0, 0, 0.81);
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-radius: 0px;
+    box-shadow: none;
+    }
+    ion-chip{
+        margin-left: 0;
+        font-size: 12px;
+
+    }
+    
+   .toolbar-background { 
+    border-width: 0; 
+    background: none; 
+}

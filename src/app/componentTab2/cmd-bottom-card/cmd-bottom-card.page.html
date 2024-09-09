@@ -1,0 +1,46 @@
+<ion-card id="bottom-card-cmd" class=" bottom-card-cmd">
+  <ion-grid fixed>
+    <ion-row>
+
+      <ion-col size="12">
+        <app-item1-cmd-bottom-card [text1Ligne3]="this.cardControl.cmd.menu.prix1" [text1Ligne1]="this.cardControl.cmd.menu.titre" paddingTopItem="0px" backgroundItem="none" widthCard="45px" heightCard="45px"
+          marginLeftCard="0px" text1Ligne2="10-15min" colorText1Ligne1="white" [showText1Ligne2]="false"
+          [showText2Ligne2]="false"  colorText1Ligne3="white" textIonChip="Add To"
+          colorIonChip2="white" backgoundColorIonChip2="darkred" [showIcon]="false"
+          [showIconCancel]="true"
+          [showIconCart]="true"
+          leftChip="50px"
+          righttChip2="150px"
+          [showIBtnBuy]="true"
+          boxShadow=" 0px 0px 9px #ff9d9d"
+          colorIonChip="success"></app-item1-cmd-bottom-card>
+
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-col size="7">
+
+        <ion-grid fixed>
+          <ion-row>
+            <app-item2-cmd-bottom-card   shadow="0px 0px 9px rgb(255, 157, 157)"  backgroundChip="darkred" [iconIshow]="false" [labelIshow]="true" textLigne1="Total" [textLigne2]="this.cardControl.cmd.prixTotal+''"></app-item2-cmd-bottom-card>
+            <app-item2-cmd-bottom-card [textLigne1]="this.cardControl.cmd.embalage[0].type" [textLigne2]="this.cardControl.cmd.embalage[0].prix+'f'"></app-item2-cmd-bottom-card>
+            <app-item2-cmd-bottom-card textLigne1="Quantite" [textLigne2]="this.cardControl.cmd.quantite"></app-item2-cmd-bottom-card>
+            <app-item2-cmd-bottom-card textLigne1="boisson" [textLigne2]="this.cardControl.cmd.boisson.prix+'f'"></app-item2-cmd-bottom-card>
+            <app-item2-cmd-bottom-card [textLigne1]="this.cardControl.cmd.embalage[1].type" [textLigne2]="this.cardControl.cmd.embalage[1].prix+'f'"></app-item2-cmd-bottom-card>
+            <app-item2-cmd-bottom-card textLigne1="Livraison" [textLigne2]="this.cardControl.cmd.livraison.prix+'f'"></app-item2-cmd-bottom-card>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col class="ion-align-self-start" size="4">
+        <ion-grid fixed>
+          <ion-row>
+            <app-item3-cmd-bottom-card></app-item3-cmd-bottom-card>
+            <app-item3-cmd-bottom-card titre="Piment"></app-item3-cmd-bottom-card>
+            <app-item3-cmd-bottom-card titre="cube"></app-item3-cmd-bottom-card>
+          </ion-row>
+        </ion-grid>
+      </ion-col> 
+    </ion-row>
+  </ion-grid>
+</ion-card>

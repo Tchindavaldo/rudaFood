@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  <ion-card>
+    <ion-grid>
+      <ion-row class="col-porteFeuille">
+       
+        <ion-col size="auto" class="col-fastfood">
+          <ion-chip color="danger">
+            <ion-icon name="notifications-outline">
+
+            </ion-icon>
+
+            <ion-label>
+              Parametres
+            </ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+
+      
+    </ion-grid>
+  </ion-card>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [scrollX]="true" [fullscreen]="true">
+  <ion-infinite-scroll   >
+
+    
+    <ion-list>
+
+   
+  
+      <app-param iconn="person-outline" titre="Compte"></app-param>
+      <app-param iconn="key-outline" titre="securite"></app-param>
+
+      <app-param iconn="alert-circle-outline" titre="politique et conditions"></app-param>
+      <app-param iconn="call-outline" titre="Contactez-nous"></app-param>
+
+      <app-param iconn="card-outline" titre="paiement"></app-param>
+      <app-param iconn="chatbox-outline" titre="Signaler un probleme"></app-param>
+
+      <app-param iconn="flag-outline" titre="Assistance"></app-param>
+      <app-param iconn="id-card-outline" titre="Sugestion"></app-param>
+
+       <app-param iconn="lock-closed-outline" titre="Confidentialite"></app-param>
+      <app-param iconn="language-outline" titre="Langue"></app-param>     
+
+      <app-param iconn="swap-horizontal-outline" titre="Changer de compte"></app-param>
+      <app-param iconn="exit-outline" titre="Deconnexion"></app-param>
+        
+          
+
+    </ion-list> 
+
+      
+  </ion-infinite-scroll>
+</ion-content> 

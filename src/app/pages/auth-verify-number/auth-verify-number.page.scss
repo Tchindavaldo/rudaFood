@@ -1,0 +1,208 @@
+ion-card {
+    box-shadow: none;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.ion-input {
+    --border-radius: 16px;
+    --padding-start: 40px;
+    --border-color: darkred;
+    --border-width: 1px;
+    --background: #ffffffad;
+    height: 70px;
+}
+
+.input-fill-outline.has-focus.sc-ion-input-md-h {
+ 
+        --border-color: darkred;
+        --background: #00000063;
+        --highlight-height: 3px;
+        --color: whitesmoke;
+    
+}
+
+ion-chip :focus .ion-activated {
+    --background: none;
+}
+
+.ion-activated {
+    --background: none;
+}
+
+ion-grid {
+    position: fixed;
+    bottom: 5%;
+}
+
+ion-grid>ion-row:nth-child(1) {
+    position: relative;
+    top: 25px;
+    right: 8px;
+}
+
+ion-grid>ion-row:nth-child(1) ion-label {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+    /* background-color: darkred; */
+    border-radius: 25px;
+    padding: 10px 17px;
+}
+
+ion-grid>ion-row:nth-child(2) {
+    margin-top: 65px;
+}
+
+ion-grid>ion-row:nth-child(3),
+:nth-child(5),
+:nth-child(6) {
+    margin-top: 20px;
+}
+
+ion-grid>ion-row:nth-child(2) ion-label {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+ion-grid>ion-row:nth-child(3) {
+    margin-top: 20px;
+}
+
+ion-grid>ion-row:nth-child(4),
+:nth-child(8) {
+    margin-top: 15px;
+}
+
+ion-grid>ion-row:nth-child(6),
+:nth-child(8) ion-label {
+
+    font-size: 17px;
+    color: #ffffff;
+    margin-top: 7%;
+}
+
+ion-grid>ion-row:nth-child(8) ion-label {
+    border-bottom: 1px solid darkred;
+    border-bottom: 1px solid white;
+}
+
+ion-grid>ion-row:nth-child(7) ion-label {
+
+
+    font-size: 17px;
+    color: #ffffff;
+    font-weight: 900;
+}
+
+ion-chip {
+
+    position: relative;
+    --background: none;
+    border-radius: 26px;
+    -webkit-margin-start: 0;
+    margin-inline-start: 0;
+    -webkit-margin-end: 0;
+    margin-inline-end: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    -webkit-padding-start: 0;
+    padding-inline-start: 0;
+    -webkit-padding-end: 0;
+    padding-inline-end: 0;
+    padding: 0px;
+
+    overflow: visible;
+
+    // background-color: #efefef;
+    width: 95%;
+    height: 60px;
+}
+
+ion-icon {
+    position: absolute;
+    color: #a65757;
+    z-index: 101;
+}
+
+.ico1 {
+
+    left: 15px;
+}
+
+.ico2 {
+
+    right: 15px;
+}
+
+
+
+.input-label-placement-floating.has-focus.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md,
+.input-label-placement-stacked.has-focus.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+    --highlight-color: darkred;
+    color: darkred;
+    display: inline;
+}
+
+.label-floating.input-fill-outline.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+
+    display: none;
+}
+
+ion-grid>ion-row:nth-child(3) ion-col {
+    display: flex;
+    align-items: center;
+}
+
+ion-grid>ion-row:nth-child(4) ion-col {
+    display: flex;
+    align-items: center;
+}
+
+ion-grid>ion-row:nth-child(9) ion-col ion-icon {
+    position: relative;
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.sc-ion-input-md-h {
+    --highlight-color-focused: darkred;
+}
+
+ion-button {
+
+    --border-radius: 15px;
+    width: 55px;
+    --background: darkred;
+    height: 55px;
+}
+
+.card-back{
+    background-image: url(../../../assets/blur3.jpg);
+    // height: 100%;
+}
+.card-back img {
+    // background-image: url(../../assets/blur3.jpg);
+    height: 100%;
+}
+
+ion-toast.custom-toast {
+    --background: #f4f4fa;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color: #4b4a50;
+  }
+  
+  ion-toast.custom-toast::part(message) {
+    font-style: italic;
+  }
+  
+  ion-toast.custom-toast::part(button) {
+    border-left: 1px solid #d2d2d2;
+    color: #030207;
+    font-size: 15px;
+  }

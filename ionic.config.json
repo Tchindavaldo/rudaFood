@@ -1,0 +1,7 @@
+{
+  "name": "rudavoFF",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,87 @@
+ion-grid{
+    margin-top: 0px;
+}
+
+
+ion-card{
+        height: 75px;
+    width: 75px;
+    background-color: darkred;
+    border-radius: 199px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-poGratuit {
+   margin-top: 25px;
+}
+
+.row-condition,
+.row-nbrRestant,.row-val-nbrRestant,.row-eligibiliter  {
+   margin-top: 25px;
+   font-size: 10px;
+   font-weight: 500;
+   text-align: center; 
+} 
+
+
+.row-eligibiliter ion-col ion-chip  {
+     font-size: 10px;
+    font-weight: 500;
+    text-align: center; 
+ } 
+.row-condition ion-label {
+  font-size: 20px;
+    font-weight: bold;
+    text-align: center; 
+    display: flex;
+}    
+.row-nbrRestant ion-label {
+  font-size: 17px;
+}    
+.row-poGratuit ion-chip{
+    font-size: 10px;
+    font-weight: 500;
+    background-color: green;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1.1px;
+}
+.row-val-nbrRestant{
+        font-weight: bold;
+    font-size: 25px;
+}
+.row-bonus > ion-col:nth-child(2) ion-chip{
+    color: white;
+    background-color: green;
+    font-size: 10px;
+    font-weight: 500;
+}
+.row-bonus > ion-col ion-chip{
+  
+    font-size: 10px;
+    font-weight: 500;
+}
+
+@media (max-height:700px) {
+    .row-condition, .row-nbrRestant, .row-val-nbrRestant, .row-eligibiliter {
+        margin-top: 10px; 
+    }
+
+    .row-nbrRestant  ion-label{
+        font-size: 12px;
+    }
+
+    .row-condition ion-label{
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+        display: flex;
+    }
+
+    .row-poGratuit  {
+        margin-top: 0px;
+    }
+}

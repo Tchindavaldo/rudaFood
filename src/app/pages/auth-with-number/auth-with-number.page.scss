@@ -1,0 +1,369 @@
+ion-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+}
+
+ion-card {
+    box-shadow: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    overflow: scroll;
+}
+.card-grid{
+    z-index: 5000;
+    background: transparent;
+}
+
+
+.input-fill-outline.has-focus.sc-ion-input-md-h {
+ 
+        --border-color: rgba(139, 0, 0, 0);
+        --background: #00000000;
+        --highlight-height: 3px;
+        --color: whitesmoke;
+    
+}
+
+ion-chip :focus .ion-activated {
+    --background: none;
+}
+
+.ion-activated {
+    --background: none;
+}
+
+
+
+ion-grid>ion-row:nth-child(1) {
+    // position: relative;
+    top: 25px;
+    right: 8px;
+}
+
+
+
+
+
+ion-grid>ion-row:nth-child(3),
+:nth-child(5),
+:nth-child(6) {
+    margin-top: 20px;
+}
+
+body.keyboard-is-open {
+    position: fixed;
+    width: 100%;
+    
+  }
+  ion-grid.keyboard-is-open {
+    background-color: red;
+  }
+     
+ion-chip {
+
+    position: relative;
+    --background: none;
+    border-radius: 26px;
+    -webkit-margin-start: 0;
+    margin-inline-start: 0;
+    -webkit-margin-end: 0;
+    margin-inline-end: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    -webkit-padding-start: 0;
+    padding-inline-start: 0;
+    -webkit-padding-end: 0;
+    padding-inline-end: 0;
+    padding: 0px;
+
+    overflow: visible;
+
+    // background-color: #efefef;
+    width: 95%;
+    height: 60px;
+}
+
+ion-icon {
+    position: absolute;
+    color: #a65757;
+    z-index: 101;
+}
+
+.ico1 {
+
+    left: 15px;
+}
+
+.ico2 {
+
+    right: 15px;
+}
+
+
+
+.input-label-placement-floating.has-focus.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md,
+.input-label-placement-stacked.has-focus.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+    --highlight-color: darkred;
+    color: darkred;
+    display: inline;
+}
+
+.label-floating.input-fill-outline.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+
+    display: none;
+}
+
+ion-grid>ion-row:nth-child(3) ion-col {
+    display: flex;
+    align-items: center;
+}
+
+ion-grid>ion-row:nth-child(4) ion-col {
+    display: flex;
+    align-items: center;
+}
+
+ion-grid>ion-row:nth-child(9) ion-col ion-icon {
+    position: relative;
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.sc-ion-input-md-h {
+    --highlight-color-focused: darkred;
+}
+
+
+.card-back{
+    background-image: url(../../../assets/blur3.jpg);
+    // height: 100%;
+}
+.card-back img {
+    // background-image: url(../../assets/blur3.jpg);
+    height: 100%;
+    
+    width: 100%;
+}
+.card-black {
+    background-color:rgb(0 0 0 / 57%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(35px);
+
+   
+}
+
+ion-toast.custom-toast {
+    --background: #f4f4fa;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color: #4b4a50;
+  }
+  
+  ion-toast.custom-toast::part(message) {
+    font-style: italic;
+  }
+  
+  ion-toast.custom-toast::part(button) {
+    border-left: 1px solid #d2d2d2;
+    color: #030207;
+    font-size: 15px;
+  }
+
+ 
+  
+//   /* Styles pour les écrans sm et plus grands */
+ 
+    ion-grid {
+        // position: fixed;
+        // top: 0%;
+        bottom: 0;
+        z-index: 500;
+        padding-top: 0px;
+        overflow-x: visible;
+        height: auto;
+        height: max-content;
+    }
+
+.row-otherConnect{
+    margin-top: -5px;
+    margin-left: -2px; 
+    // position: fixed;
+    bottom: 47px;
+}
+.row-otherConnect ion-icon{
+    position: relative;
+}
+ion-grid>ion-row:nth-child(9) ion-label {
+    border-bottom: 0px solid darkred;
+    border-bottom: 0px solid white;
+    font-size: 13px;
+    // position: fixed;
+    bottom: 60px;
+    color: white;
+}
+
+    ion-grid>ion-row:nth-child(4),
+    :nth-child(9) {
+        margin-top: 9px;
+    } 
+    .col-inscrip{
+        padding-top: 0;
+    }
+
+    .col-fogotPsswrd{
+        padding-bottom: 0;
+    }
+    ion-grid>ion-row:nth-child(7) ion-label {
+
+
+        // font-size: 12px;
+        // color: white;
+        // font-weight: 900;
+    }
+    
+    ion-button {
+
+        --border-radius: 10px;
+        width: 35px;
+        --background: darkred;
+        height: 35px;
+        min-height: 35px;
+    }
+    
+    ion-grid>ion-row:nth-child(6),
+:nth-child(8) ion-label {
+
+    font-size: 12px;
+    color: white;
+    margin-top: -2%;
+}
+    ion-grid>ion-row:nth-child(1) ion-label {
+        // display: flex;
+        justify-content: center;
+        // color:white; 
+        /* background-color: darkred; */
+        border-radius: 25px;
+    }
+ 
+ 
+ion-grid>ion-row:nth-child(2) {
+    margin-top: 40px;
+}
+
+ion-grid>ion-row:nth-child(2) ion-label {
+    // font-size: 20px;
+    // font-weight: bold;
+    // color:white;
+}
+
+ion-grid>ion-row:nth-child(3) {
+    margin-top: 5px;
+}
+.ion-input {
+    --border-radius: 20px;
+    --padding-start: 40px;
+    // --border-color: darkred;
+    --border-color: rgba(139, 0, 0, 0);
+    --border-width: 1px;
+    // --background: #ffffffad;
+    --background: #e4e4e400;
+    border-bottom: 0.001px solid #ffffff59;
+    height: 60px;
+    min-height: 40px;
+}
+
+.row-connect-label{
+    margin-top: 20px;
+} 
+
+.row-title{
+    
+    font-size: 3rem;
+}
+.col-btn-connect{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-height:700px){
+
+    .row-title{
+    
+        font-size: 2.7rem;
+    }
+    ion-button {
+        --border-radius: 10px;
+        width: 35px;
+        // --background: rgb(19, 139, 0);
+        height: 35px;
+        min-height: 35px;
+    }
+    span, .row-otherConnect , .row-connect-label{
+     display: none;
+    }
+
+    ion-grid  { 
+        margin-top: 45px;
+    }
+
+    
+    ion-grid>ion-row:nth-child(3),
+    :nth-child(5),
+    :nth-child(6) {
+        margin-top: 0px;
+    }
+}
+
+@media(max-height:500px){
+  
+    span, .row-otherConnect , .row-connect-label{
+     display: none;
+    }
+    ion-grid   > ion-row:nth-child(1) {
+        
+        display: none;
+    }
+    ion-grid  { 
+        margin-top: 35px;
+    }
+
+    ion-grid>ion-row:nth-child(2) {
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+    ion-grid>ion-row:nth-child(4),
+    :nth-child(9) {
+        margin-top: 5px;
+        margin-bottom: -5px;    } 
+    
+ion-grid>ion-row:nth-child(3),
+:nth-child(5),
+:nth-child(6) {
+    margin-top: 0px;
+}
+}
+@media(min-height:900px){
+  
+   
+.row-title{
+    
+    font-size: 3.7rem;
+}
+  
+}

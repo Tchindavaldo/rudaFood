@@ -1,0 +1,117 @@
+ion-header ion-toolbar:first-of-type{
+    padding-top: 10px;
+}
+
+ion-infinite-scroll {
+    position: relative;
+       padding-bottom: 100px;
+}
+
+ion-item{
+    --border-style: none;
+
+}
+.infinitScroll2{
+    
+    padding-bottom: 0px;
+}
+
+ion-card{
+   
+      height: max-content;  
+  box-shadow: none;
+    margin: 0;
+}
+ion-grid{
+    padding: 0;
+}
+.card-parent {
+     position: fixed;
+    bottom: 0;
+    right: 0px;
+    left: 0px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    width: 100%;
+}
+.card-parent ion-card { 
+    border-radius: 30px;
+        margin: 0px;
+    // border-top-left-radius: 45px;
+    // border-top-right-radius: 45px;
+}
+.col-segment{
+    text-align: center;
+}
+.col-segment ion-label{
+        font-size: 10px;
+    font-weight: bold; 
+}
+.col-segment ion-chip  {
+    
+    position: relative;
+    overflow: visible;
+}
+
+
+.firstCchip{
+    
+    background-color: darkred;
+    color: white;
+}
+
+.col-segment ion-chip >ion-label:nth-child(2){
+    position: absolute;
+    color: white;
+    background: darkred;
+    padding: 0;
+    width: 20px;
+    border-radius: 58px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -7px;
+    right: -7px;
+}
+
+
+
+ 
+
+.col-pannier{
+    margin-top: -10px;
+}
+.row-segment{
+    margin-top: -5px;
+}
+ion-header{
+    box-shadow: none;
+}
+.row-article{
+    margin-top: 5px;
+}
+.row-buy{
+    margin-top: -10px;
+}
+.col-prix{    
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    text-align: right;
+    padding-right: 15px;
+    font-size: 10px;
+}
+.col-article{
+    color: rgba(0, 0, 0, 0.81);
+    padding-left: 10px;
+    font-size: 10px;
+}
+.col-article ion-chip{
+    --background:darkred;
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+}
+
