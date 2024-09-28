@@ -3,10 +3,10 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Import Firestore Module
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-
 
 import { PannierTobuyPageModule } from '../homeComponents/pannier-tobuy/pannier-tobuy.module';
 import { PannierAchatPageModule } from '../homeComponents/pannier-achat/pannier-achat.module';
@@ -22,9 +22,8 @@ import { Item2Component } from '../homeComponents/item2/item2.component';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
+    AngularFirestoreModule,
 
-
-    
     Item2Component,
     Item3Component,
 
@@ -34,7 +33,7 @@ import { Item2Component } from '../homeComponents/item2/item2.component';
     PannierTobuyPageModule,
   ],
   declarations: [Tab1Page],
-  
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Tab1PageModule {}

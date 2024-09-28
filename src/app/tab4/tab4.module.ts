@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { Tab4PageRoutingModule } from './tab4-routing.module';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Import Firestore Module
 
 import { Tab4Page } from './tab4.page';
 import { NotifPageModule } from './notif/notif.module';
@@ -15,8 +16,8 @@ import { NotifPageModule } from './notif/notif.module';
     FormsModule,
     IonicModule,
     Tab4PageRoutingModule,
-    NotifPageModule
+    NotifPageModule,
   ],
-  declarations: [Tab4Page]
+  declarations: [Tab4Page],
 })
 export class Tab4PageModule {}
