@@ -19,7 +19,7 @@ export class cmdAdded {
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'added' || change.type === 'modified') {
           console.log('Document modifié ou ajouté : ', change.doc.data());
-          console.log('callBack get ', change);
+          console.log('callBack get ', change.doc);
         }
       });
     });

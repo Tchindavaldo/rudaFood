@@ -1,0 +1,51 @@
+# Statistiques à afficher
+
+1. Nombre de commandes
+2. Revenu total
+
+# Problèmes à gérer
+
+- Connexion : Problèmes lors du chargement des données
+- Connexion : Problèmes lors de l'envoi des données
+- Message de connexion : Afficher un message pour indiquer la connexion Internet et avertir en cas de déconnexion
+- Popup de confirmation : Ajouter une popup pour confirmer l'ajout au panier, les modifications ou suppressions d'admin
+- Blocage d'instructions : Bloquer les instructions une fois exécutées dans `onViewChecked`
+- Chargement spécifique : Charger uniquement les menus des fast-foods pour les utilisateurs (sans charger tout le fast-food)
+
+# Gestion des erreurs
+
+- FirebaseError : Gérer l'erreur `auth/invalid-credential` pour afficher un message d'email ou mot de passe incorrect
+- Auth numéro : Fixer l'indicatif +237, filtrer le numéro et afficher un toast en fonction du résultat
+- Empêcher la création de comptes avec un numéro déjà associé à un email
+- Ajouter une icône de chargement au clic sur un bouton, stopper après un délai en cas de perte de connexion
+
+# Affichage des notifications
+
+- Remplacer les nombres de notifications par des emojis ou afficher les deux (chiffres en haut et emojis en bas)
+
+# Commandes et statut
+
+- Mettre à jour le statut des commandes dans la BD pour permettre à l'utilisateur de suivre son évolution
+- Notifier le fast-food lors du clic sur "Finish" et proposer un message WhatsApp ou une nouvelle notification
+
+# Gestion des menus
+
+- Ajouter une liste déroulante pour choisir la disponibilité lors de l'ajout d'un menu
+
+# Mises à jour en temps réel
+
+- Mettre à jour la liste des commandes et les notifications en temps réel en cas de changement de statut
+
+# Gestion des utilisateurs
+
+- Ajouter la possibilité de joindre une photo lors de la création du compte utilisateur
+
+# Gestion des requêtes vers la BD
+
+- Afficher un toast d'erreur serveur en cas de problème lors des requêtes GET/POST/UPDATE/DELETE
+- Enregistrer les erreurs dans la BD de l'admin et/ou envoyer une notification par email ou message en cas d'erreur
+
+# Action a effectuer lors de la dectection d'ajout d'une nouvelle commande par l'utilisateur
+
+- mise a jour de la liste des commande du fast food
+- notification de nouvelle commande au fast-food
