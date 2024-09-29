@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Menu } from 'src/app/data/menu';
 import { showPages } from 'src/app/services/showPages';
 import { ToastButton, ToastController } from '@ionic/angular';
+import { requeToFastFood } from 'src/app/services/requeToFastFood';
 
 @Component({
   selector: 'app-page-list-cmd-fast-food',
@@ -49,12 +50,13 @@ export class PageListCmdFastFoodPage implements OnInit , AfterContentChecked {
 
 
   constructor(
-    public showPages : showPages,
     private router:Router,
+    public dataGet:DataService,
+    public showPages : showPages,
     public cardControle:CardService,
     private requeToMenu:requeToMenu,
-    public dataGet:DataService,
     private toastController:  ToastController, 
+    public requeteToFastfood :requeToFastFood,
      
   ) { }
 
@@ -218,33 +220,14 @@ changeMenu(){
 }
 
 
-getFastFoodCorespond(){
-try {
-  this.dataGet.FastFoodTab.forEach(
-    TempFastFood =>{
-      if (this.dataGet.user.isMarchand && TempFastFood.proprietaire.infos.email == this.dataGet.user.infos.email &&TempFastFood.proprietaire.infos.uid == this.dataGet.user.infos.uid) {
-        this.dataGet.FastFood = TempFastFood
-        console.log('gerant de daftfood trouver fast ajouterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
- console.log('fast trouverrrrrrrrrrrrrrrrrr',this.dataGet.FastFood);
- 
-      }else{
-        console.log('gerant pas trouver');
-        this.managerFastFoodFound = false
-      }
-    }
-  )
-} catch (error) {
-  console.log(error);
-  
-}
-}
+
   
 redirectStore(){
   try {
     console.log(this.dataGet.FastFoodTab);
 
     
- this.getFastFoodCorespond()
+ this.requeteToFastfood.getFastFoodCorespond()
 
  
     if (!this.dataGet.user.isMarchand) {
@@ -253,8 +236,12 @@ redirectStore(){
     }
 
 
-    if (this.dataGet.user.isMarchand && !this.managerFastFoodFound) {
-      this.presentToast('bottom','Probleme lors de la recuperation de votre compte marchand veuillez contacter RudaFood')
+    // if (this.dataGet.user.isMarchand && !this.managerFastFoodFound) {
+    if (this.dataGet.user.isMarchand)
+    {
+
+          this.presentToast('bottom','Probleme lors de la recuperation de votre compte marchand veuillez contacter RudaFood')
+    
     }
 
   } catch (error) {

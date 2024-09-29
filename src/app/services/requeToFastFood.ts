@@ -13,13 +13,14 @@ import {
 import { Users } from '../data/Users';
 import { UsersInfos } from '../data/UsersInfos';
 import { Commande, boisson,  embalage, livraison } from '../data/commande';
+import { DataService } from './data.service';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class requeToFastFood {
-  constructor() {}
+  constructor(private dataGet :DataService) {}
   
   async addFastFoodToFirestore(FastFoodGet: FastFood,idx:string): Promise<FastFood|null> {
     const firestore = getFirestore();
@@ -43,34 +44,67 @@ let fastFoodToReturn:FastFood|null=null
     }
   }
 
-  async updateFastFood(fastToAdd: FastFood,idx:string): Promise<FastFood|null>{
+
+
+
+
+
+
+
+
+
+  async addCmdToFastFood(cmdToAdd: Commande[],idxFastFood:string): Promise<FastFood|null>
+  {
+
     var fastfoodToReturn:FastFood|null = null
      
     
-      try {
-       
-        
-     
-      
-              
-                     
-              const fastfoodAdded =        this.addFastFoodToFirestore(fastToAdd,idx)
-              if (fastfoodAdded!=null) {
-                fastfoodToReturn  = fastToAdd
-              }
+	 try {
     
-      } catch (error) {
-       console.log('erreur lord de la boucle sur les utilisateur pour update');
-       throw error;
-   
-      }
-                     
-   
-                     
-                     return fastfoodToReturn
+		const FastFoodGet = await this.getFastFoodFromFirestore(idxFastFood);
+
+		if (FastFoodGet != null) 
+		{
+
+		      cmdToAdd.forEach((tempCmdToAdd)=>
+		      {
+
+			     FastFoodGet.commande.push(tempCmdToAdd);
+
+		      })
+		      
+		      fastfoodToReturn =  await this.addFastFoodToFirestore(FastFoodGet, idxFastFood);
+		      console.log('ajout réussi de la commande du client au fastfood concerner');
+		  
+		} else 
+		{
+
+		      console.log('FastFoodGet is null');
+
+		}
+				 
+      
+	 } catch (error) 
+	 {
+	   
+		throw error;
+    
+	 }            
+			   
+	 return fastfoodToReturn
      
-   }
+  }
+  
    
+
+
+
+
+
+
+
+
+
   async getFastFoodFromFirestore(idx:string): Promise<FastFood|null> {
     const firestore = getFirestore();
     const usersCollection = doc(firestore, 'fast-food', idx);
@@ -79,17 +113,17 @@ let fastFoodToReturn:FastFood|null=null
       const docSnapshot = await getDoc(usersCollection);
   
       if (docSnapshot.exists()) {
-        const data = docSnapshot.data();
-        if (data && data['FastFood']) {
-          const fastFoodArray = await this.convertJsonToFastFood(data['FastFood']);
-          return fastFoodArray;
-        } else {
-          console.log('Le document ne contient pas le champ attendu.');
-          return null;  // Retourne null si le champ attendu n'est pas trouvé
-        }
+	 const data = docSnapshot.data();
+	 if (data && data['FastFood']) {
+	   const fastFoodArray = await this.convertJsonToFastFood(data['FastFood']);
+	   return fastFoodArray;
+	 } else {
+	   console.log('Le document ne contient pas le champ attendu.');
+	   return null;  // Retourne null si le champ attendu n'est pas trouvé
+	 }
       } else {
-        console.log("Le document n'existe pas.");
-        return null;  // Retourne null si le document n'existe pas
+	 console.log("Le document n'existe pas.");
+	 return null;  // Retourne null si le document n'existe pas
       }
     } catch (error) {
       console.log(error);
@@ -97,124 +131,176 @@ let fastFoodToReturn:FastFood|null=null
     }
   }
   
+
+
+
+
+
+
+
+
+
+  getFastFoodCorespond()
+  {
+	 try 
+	 {
+
+		this.dataGet.FastFoodTab.forEach
+		(
+
+		      TempFastFood =>
+		      {
+
+			     if (this.dataGet.user.isMarchand && 
+				  TempFastFood.proprietaire.infos.uid == this.dataGet.user.infos.uid &&
+				  TempFastFood.proprietaire.infos.email == this.dataGet.user.infos.email)
+			     {
+
+				    this.dataGet.FastFood = TempFastFood
+				    console.log('fast trouverrrrrrrrrrrrrrrrrr',this.dataGet.FastFood);
+				    console.log('gerant de daftfood trouver fast ajouterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+		  
+			     } 
+			     
+		      }
+
+		)
+
+	 } catch (error)
+	 {
+
+	   console.log(error);
+	   
+	 }
+  }
+
+
+
+
+
+
+
+
+
+
   async convertFastFoodToJsonArray(FastFood: FastFood): Promise<any> {
     const jsonArray = {
       id: FastFood.id,
       nom: FastFood.nom,
       proprietaire: {
-        infos:{
+	 infos:{
 
-        nom: FastFood.proprietaire.infos.nom,
-        prenom: FastFood.proprietaire.infos.prenom,
-        age: FastFood.proprietaire.infos.age,
-        numero: FastFood.proprietaire.infos.numero,
-        uid: FastFood.proprietaire.infos.uid,
-        email: FastFood.proprietaire.infos.email,
-        password: FastFood.proprietaire.infos.password,
-        },
-        isMarchand: FastFood.proprietaire.isMarchand,
-        statistique: FastFood.statistique,
-        commande:FastFood.proprietaire.cmd.map((item) => ({
-          uidUser: item.uidUser,
-          idCmd: item.idCmd,
-          idFastFood: item.idFastFood,
-          menu: {
-            titre: item.menu.titre,
-            prix1: item.menu.prix1,
-            prix2: item.menu.prix2,
-            prix3: item.menu.prix3,
-        
-            optionPrix1: item.menu.optionPrix1,
-            optionPrix2: item.menu.optionPrix2,
-            optionPrix3: item.menu.optionPrix3,
+	 nom: FastFood.proprietaire.infos.nom,
+	 prenom: FastFood.proprietaire.infos.prenom,
+	 age: FastFood.proprietaire.infos.age,
+	 numero: FastFood.proprietaire.infos.numero,
+	 uid: FastFood.proprietaire.infos.uid,
+	 email: FastFood.proprietaire.infos.email,
+	 password: FastFood.proprietaire.infos.password,
+	 },
+	 isMarchand: FastFood.proprietaire.isMarchand,
+	 statistique: FastFood.statistique,
+	 commande:FastFood.proprietaire.cmd.map((item) => ({
+	   uidUser: item.uidUser,
+	   idCmd: item.idCmd,
+	   idFastFood: item.idFastFood,
+	   menu: {
+	     titre: item.menu.titre,
+	     prix1: item.menu.prix1,
+	     prix2: item.menu.prix2,
+	     prix3: item.menu.prix3,
+	 
+	     optionPrix1: item.menu.optionPrix1,
+	     optionPrix2: item.menu.optionPrix2,
+	     optionPrix3: item.menu.optionPrix3,
     
-            
-            image: item.menu.image,
-            disponibilite: item.menu.disponibilite,
-          },
-          quantite: item.quantite,
+	     
+	     image: item.menu.image,
+	     disponibilite: item.menu.disponibilite,
+	   },
+	   quantite: item.quantite,
 
-          embalage: item.embalage.map((item)=>({
-            type : item.type,
-            prix : item.prix,
-          })),
+	   embalage: item.embalage.map((item)=>({
+	     type : item.type,
+	     prix : item.prix,
+	   })),
 
-           
-           
+	    
+	    
 
-          boisson: {
-            type: item.boisson.type,
-            prix: item.boisson.prix
-          },
+	   boisson: {
+	     type: item.boisson.type,
+	     prix: item.boisson.prix
+	   },
 
-          livraison: {
-            statut: item.livraison.statut,
-            prix: item.livraison.prix
-          },
+	   livraison: {
+	     statut: item.livraison.statut,
+	     prix: item.livraison.prix
+	   },
 
-          prixTotal: item.prixTotal,
-          staut: item.staut,
-          isBuy: item.isBuy,
-          ispending: item.ispending
-        })),
+	   prixTotal: item.prixTotal,
+	   staut: item.staut,
+	   isBuy: item.isBuy,
+	   ispending: item.ispending
+	 })),
 
       },
       menu: FastFood.menu.map((item) => ({
-        titre: item.titre,
-        prix1: item.prix1,
-        prix2: item.prix2,
-        prix3: item.prix3,
-        
-        optionPrix1: item.optionPrix1,
-        optionPrix2: item.optionPrix2,
-        optionPrix3: item.optionPrix3,
+	 titre: item.titre,
+	 prix1: item.prix1,
+	 prix2: item.prix2,
+	 prix3: item.prix3,
+	 
+	 optionPrix1: item.optionPrix1,
+	 optionPrix2: item.optionPrix2,
+	 optionPrix3: item.optionPrix3,
 
-        
-        image: item.image,
-        disponibilite: item.disponibilite,
+	 
+	 image: item.image,
+	 disponibilite: item.disponibilite,
       })),
       commandeFastFood:FastFood.commande.map((item) => ({
-        uidUser: item.uidUser,
-        idCmd: item.idCmd,
-        idFastFood: item.idFastFood,
-        menu: {
-          titre: item.menu.titre,
-          prix1: item.menu.prix1,
-          prix2: item.menu.prix2,
-          prix3: item.menu.prix3,
+	 uidUser: item.uidUser,
+	 idCmd: item.idCmd,
+	 idFastFood: item.idFastFood,
+	 menu: {
+	   titre: item.menu.titre,
+	   prix1: item.menu.prix1,
+	   prix2: item.menu.prix2,
+	   prix3: item.menu.prix3,
       
-          optionPrix1: item.menu.optionPrix1,
-          optionPrix2: item.menu.optionPrix2,
-          optionPrix3: item.menu.optionPrix3,
+	   optionPrix1: item.menu.optionPrix1,
+	   optionPrix2: item.menu.optionPrix2,
+	   optionPrix3: item.menu.optionPrix3,
   
-          
-          image: item.menu.image,
-          disponibilite: item.menu.disponibilite,
-        },
-        quantite: item.quantite,
+	   
+	   image: item.menu.image,
+	   disponibilite: item.menu.disponibilite,
+	 },
+	 quantite: item.quantite,
 
-        embalage: item.embalage.map((item)=>({
-          type : item.type,
-          prix : item.prix,
-        })),
+	 embalage: item.embalage.map((item)=>({
+	   type : item.type,
+	   prix : item.prix,
+	 })),
 
-         
-         
+	  
+	  
 
-        boisson: {
-          type: item.boisson.type,
-          prix: item.boisson.prix
-        },
+	 boisson: {
+	   type: item.boisson.type,
+	   prix: item.boisson.prix
+	 },
 
-        livraison: {
-          statut: item.livraison.statut,
-          prix: item.livraison.prix
-        },
+	 livraison: {
+	   statut: item.livraison.statut,
+	   prix: item.livraison.prix
+	 },
 
-        prixTotal: item.prixTotal,
-        staut: item.staut,
-        isBuy: item.isBuy,
-        ispending: item.ispending
+	 prixTotal: item.prixTotal,
+	 staut: item.staut,
+	 isBuy: item.isBuy,
+	 ispending: item.ispending
       })),
       statistique: FastFood.statistique,
     };
@@ -240,32 +326,32 @@ let fastFoodToReturn:FastFood|null=null
       item.idCmd,
       item.idFastFood,
       new Menu(
-        item.menu.titre,
-        item.menu.prix1,
-        item.menu.prix2,
-        item.menu.prix3,
-        
-        item.menu.optionPrix1,
-        item.menu.optionPrix2,
-        item.menu.optionPrix3,
+	 item.menu.titre,
+	 item.menu.prix1,
+	 item.menu.prix2,
+	 item.menu.prix3,
+	 
+	 item.menu.optionPrix1,
+	 item.menu.optionPrix2,
+	 item.menu.optionPrix3,
 
-        
-        item.menu.image,
+	 
+	 item.menu.image,
 
-        item.menu.disponibilite
+	 item.menu.disponibilite
       ),
       item.quantite,
       item.embalage.map((item: any) => new embalage(
-        item.type,
-        item.prix,
+	 item.type,
+	 item.prix,
       )),
       new boisson(
-        item.boisson.type,
-        item.boisson.prix,
+	 item.boisson.type,
+	 item.boisson.prix,
       ),
       new livraison(
-        item.livraison.statut,
-        item.livraison.prix,
+	 item.livraison.statut,
+	 item.livraison.prix,
       ),
       item.prixTotal,
       item.staut,
@@ -303,32 +389,32 @@ let fastFoodToReturn:FastFood|null=null
       item.idCmd,
       item.idFastFood,
       new Menu(
-        item.menu.titre,
-        item.menu.prix1,
-        item.menu.prix2,
-        item.menu.prix3,
-        
-        item.menu.optionPrix1,
-        item.menu.optionPrix2,
-        item.menu.optionPrix3,
+	 item.menu.titre,
+	 item.menu.prix1,
+	 item.menu.prix2,
+	 item.menu.prix3,
+	 
+	 item.menu.optionPrix1,
+	 item.menu.optionPrix2,
+	 item.menu.optionPrix3,
 
-        
-        item.menu.image,
+	 
+	 item.menu.image,
 
-        item.menu.disponibilite
+	 item.menu.disponibilite
       ),
       item.quantite,
       item.embalage.map((item: any) => new embalage(
-        item.type,
-        item.prix,
+	 item.type,
+	 item.prix,
       )),
       new boisson(
-        item.boisson.type,
-        item.boisson.prix,
+	 item.boisson.type,
+	 item.boisson.prix,
       ),
       new livraison(
-        item.livraison.statut,
-        item.livraison.prix,
+	 item.livraison.statut,
+	 item.livraison.prix,
       ),
       item.prixTotal,
       item.staut,

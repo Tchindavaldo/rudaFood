@@ -18,7 +18,7 @@ export class DataService {
   
   photoProfil!:string|null;
   idxFastFood!:number;
-  idxUser!:number;
+  idxUser!:string;
   menu!:Menu;
   cmdTab!:Commande[];
   // menuTab:Menu[]=[new Menu('',0,0,0,'','','','','')]

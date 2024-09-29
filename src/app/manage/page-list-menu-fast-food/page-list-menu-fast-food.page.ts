@@ -166,32 +166,7 @@ export class PageListMenuFastFoodPage implements OnInit, AfterViewInit {
     }
   }
 
-  del(tempsFastFood: FastFood) {
-    this.toast.showLoader('lodaerTab3MenuDelete');
-    this.requeteToFastFood
-      .updateFastFood(tempsFastFood, tempsFastFood.id.toString())
-      .then((fastFoodGet) => {
-        if (fastFoodGet != null) {
-          this.menuTab = [];
-          console.log('valeur de menu tabbbbbbb', this.menuTab);
-
-          this.dataGet.FastFood = tempsFastFood;
-          this.menuTab = this.dataGet.FastFood.menu;
-          console.log('valeur de menu tabbbbbbb', this.menuTab);
-          console.log(
-            'apres suppression nouveau menu',
-            this.dataGet.FastFood.menu
-          );
-          this.toast.hideLoader('lodaerTab3MenuDelete');
-          this.toast.presentToast('bottom', 'suppression reussi');
-        }
-      })
-      .catch((error) => {
-        console.log('erreur lord de la suppression', error);
-        this.toast.hideLoader('lodaerTab3MenuDelete');
-        this.toast.showErrorToast(error);
-      });
-  }
+ 
 
   async addMenuTabToFirestore(fastFoodToAddGet: FastFood) {
     let fastAdded: FastFood | null = null;

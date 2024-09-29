@@ -109,14 +109,18 @@ export class Tab1Page implements OnInit, AfterViewChecked {
     public cardControle: CardService,
     public dataGet: DataService
   ) {}
-  ngOnInit(): void {
-    const app = initializeApp(environment.firebase);
-    // this.notify.getMenuUpdates;
-    this.cmdAddedService.listenForMenuChanges(), this.getGeneralData();
+  ngOnInit(): void 
+  {
+
+    this.getGeneralData();
     this.getGeneralDataUser();
+    // this.notify.getMenuUpdates;
+    this.photo = this.dataGet.photoProfil;
+    this.cmdAddedService.listenForUserChanges();
+    this.cmdAddedService.listenForMenuChanges();
+    const app = initializeApp(environment.firebase);
     console.log('user get onInit  ', this.DataFastFood.user);
 
-    this.photo = this.dataGet.photoProfil;
   }
 
   ngAfterViewChecked(): void {
@@ -504,6 +508,7 @@ export class Tab1Page implements OnInit, AfterViewChecked {
       const fastfoodIsget = await this.getAllFastFood();
       if (fastfoodIsget.length != 0) {
         this.fastfoodAllTabIsGet = true;
+        this.requeToFastFood.getFastFoodCorespond()
       }
 
       return data;

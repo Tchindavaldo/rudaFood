@@ -44,18 +44,20 @@ export class requeToUser {
     public data : DataService
   ) {}
   
-  async addUserToFirestore(userToAdd: Users,idx:string): Promise<void> {
+  async addUserToFirestore(userToAdd: Users,idx:string): Promise<Users | null> {
     const firestore = getFirestore();
-
+    let userToReturn : Users | null =null
     const usersCollection = doc(firestore, 'users', idx);
-
     try {
       const user: any = await this.convertUserToJson(userToAdd);
 
       // Ajouter le tableau JSON à la base de données
       await setDoc(usersCollection, { user });
 
+      userToReturn = userToAdd
       console.log('Users added to Firestore successfully');
+
+      return userToReturn
     } catch (error) {
       console.log(error);
       throw error;
@@ -289,7 +291,11 @@ if (this.mailcoress != '') {
        if (userget2 != null  ) {
     
         if(userget2.infos.password === pass) {
-          this.resu = userget2 } 
+          this.resu = userget2
+        this.data.idxUser = this.mailcoress
+        console.log('id de l\'utilisateur dans la base de donner',this.mailcoress);
+        
+        } 
 
          
         if(userget2.infos.password !== pass) {
@@ -395,7 +401,7 @@ this.resu3=''
                    if (userget2.isMarchand) {
                     
                    }
-                   this.data.idxUser = index
+                   this.data.idxUser = index.toString()
                   console.log('mail triuver', userget2);
                   
               }  

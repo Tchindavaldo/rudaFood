@@ -119,7 +119,7 @@ try {
         this.show.showLoader('ctnLoaderBottomCard')
 
       prixTotal = menu.prix1 + 150
-      const cmd = new Commande(this.dataService.user.infos.uid,this.dataService.user.cmd.length,this.dataService.idxFastFood,menu,quantiteCmd,embalagee,boissonn,livraisonn,prixTotal,'isPendingToFastFood',false,true)
+      const cmd = new Commande(this.dataService.user.infos.uid,this.dataService.user.cmd.length,this.dataService.idxFastFood,menu,quantiteCmd,embalagee,boissonn,livraisonn,prixTotal,'isPendingToCustomer',false,true)
       const tempUser  = JSON.parse(JSON.stringify( this.dataService.user ))
       tempUser.cmd.push(cmd)
     

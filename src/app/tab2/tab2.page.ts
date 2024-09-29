@@ -203,8 +203,9 @@ try {
  
   if (tempUserToUpdate.cmd[i].ispending === true) {
     // datachanged = true;
-    tempUserToUpdate.cmd[i].ispending = false;
     tempUserToUpdate.cmd[i].isBuy = true; 
+    tempUserToUpdate.cmd[i].ispending = false;
+    tempUserToUpdate.cmd[i].staut = 'isPendingToFastFood'; 
 
    
   }
