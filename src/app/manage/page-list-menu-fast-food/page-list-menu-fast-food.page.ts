@@ -76,7 +76,7 @@ export class PageListMenuFastFoodPage implements OnInit, AfterViewInit {
     this.idMenuClick = 0;
   }
 
-  getMEnu() {
+  async getMEnu() {
     try {
       this.MenuIsGet = false;
       this.erroDataGeting = false;
@@ -84,34 +84,21 @@ export class PageListMenuFastFoodPage implements OnInit, AfterViewInit {
         console.log('tableau de fastfood vide');
         this.erroDataGeting = true;
       }
-      // console.log(this.dataGet.user.isMarchand);
 
-      this.dataGet.FastFoodTab.forEach((TempFastFood) => {
-        if (
-          this.dataGet.user.isMarchand &&
-          TempFastFood.proprietaire.infos.email ==
-            this.dataGet.user.infos.email &&
-          TempFastFood.proprietaire.infos.uid == this.dataGet.user.infos.uid
-        ) {
-          this.dataGet.FastFood = TempFastFood;
-          this.dataGet.menuTab = this.dataGet.FastFood.menu;
-          this.menuTab = this.dataGet.menuTab;
+		await this.requeteToFastFood.getFastFoodCorespond()
+		this.menuTab = this.dataGet.FastFood.menu;
 
-          console.log(
-            'menu de daftfood trouver fast ajouterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr'
-          );
-          console.log('fast ajouter', this.dataGet.FastFood);
-          this.MenuIsGet = true;
-        } else {
-          console.log('gerant pas trouver');
-          this.managerFastFoodFound = false;
-          this.erroDataGeting = true;
-        }
-      });
+		console.log(
+		'menu de daftfood trouver fast ajouterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr'
+		);
+		console.log('fast ajouter', this.dataGet.FastFood);
+		this.MenuIsGet = true;
+
     } catch (error) {
       console.log('errrrrrrrrrrrrrrrrrrr', error);
       this.erroDataGeting = true;
       this.toast.showErrorToast(error);
+      this.managerFastFoodFound = false;
     }
   }
 

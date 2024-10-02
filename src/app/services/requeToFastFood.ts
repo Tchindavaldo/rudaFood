@@ -66,15 +66,37 @@ let fastFoodToReturn:FastFood|null=null
 		if (FastFoodGet != null) 
 		{
 
+
+			
 		      cmdToAdd.forEach((tempCmdToAdd)=>
 		      {
 
-			     FastFoodGet.commande.push(tempCmdToAdd);
+
+
+				const isCmdAlreadyPresent = FastFoodGet.commande.some
+				(
+
+					(existingCmd) => existingCmd.idCmd === tempCmdToAdd.idCmd
+
+				);
+
+				// Si la commande n'est pas présente, on l'ajoute
+				if (!isCmdAlreadyPresent) 
+				{
+					
+					FastFoodGet.commande.push(tempCmdToAdd);
+
+				}
+ 
 
 		      })
 		      
 		      fastfoodToReturn =  await this.addFastFoodToFirestore(FastFoodGet, idxFastFood);
-		      console.log('ajout réussi de la commande du client au fastfood concerner');
+		         // Boucle pour afficher l'ID de toutes les commandes du fast-food
+				// console.log('Liste des ID des commandes du fast-food :');
+				// FastFoodGet.commande.forEach((cmd) => {
+				// 	console.log(`ID Commande : ${cmd.idCmd}`);
+				// });
 		  
 		} else 
 		{
@@ -140,7 +162,7 @@ let fastFoodToReturn:FastFood|null=null
 
 
 
-  getFastFoodCorespond()
+  async getFastFoodCorespond()
   {
 	 try 
 	 {
@@ -157,6 +179,7 @@ let fastFoodToReturn:FastFood|null=null
 			     {
 
 				    this.dataGet.FastFood = TempFastFood
+				    this,this.dataGet.menuTab = TempFastFood.menu
 				    console.log('fast trouverrrrrrrrrrrrrrrrrr',this.dataGet.FastFood);
 				    console.log('gerant de daftfood trouver fast ajouterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
 		  

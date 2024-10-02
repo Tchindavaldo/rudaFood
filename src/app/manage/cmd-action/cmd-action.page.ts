@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { requeToFastFood } from 'src/app/services/requeToFastFood';
 
@@ -19,10 +19,23 @@ export class CmdActionPage implements OnInit {
   @Input() idx = 0
 
     constructor(private dataGet:DataService,
-      private requeteToFasFood:requeToFastFood
+      private requeteToFasFood:requeToFastFood,
+      private renderer: Renderer2, private el: ElementRef,
     ) { }
   
     ngOnInit() {
+   const ionItem = this.el.nativeElement.querySelector('ion-item');
+ setTimeout
+ (
+	()=>{
+		   if (ionItem) {
+      this.renderer.setStyle(ionItem, 'transform', 'translateX(0)');
+    }else{
+      console.log('element pas encore diponible');
+      
+    }
+	}
+ )
   
     }
     async statutChange(uid: string, idx: number, actions: string) {

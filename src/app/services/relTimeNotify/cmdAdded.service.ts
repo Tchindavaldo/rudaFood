@@ -40,15 +40,15 @@ export class cmdAdded
 
 
 
-listenForUserChanges()
+async listenForUserChanges()
 {
 
         const menuCollectionRef = collection(this.firestore, 'users');
 
-        onSnapshot(menuCollectionRef, (snapshot) => 
+        onSnapshot(menuCollectionRef, async (snapshot) => 
         {
 
-                  snapshot.docChanges().forEach((change) => 
+                  for (const change of snapshot.docChanges()) 
                   {
 
                             if (change.type === 'added' || change.type === 'modified') 
@@ -58,13 +58,13 @@ listenForUserChanges()
                                       if (change.doc.data()) 
                                       {
 
-                                          fonction.updateFastfoodCmdAfterUserNewCmd(change.doc.data(),this.dataServies,this.requeToFastFood) 
+                                          await fonction.updateFastfoodCmdAfterUserNewCmd(change.doc.data(),this.dataServies,this.requeToFastFood) 
 
                                       }
 
                             }
 
-                  });
+                  };
 
         });
   
@@ -79,15 +79,15 @@ listenForUserChanges()
 
 
 
-listenForMenuChanges()
+async listenForMenuChanges()
 {
 
   const menuCollectionRef = collection(this.firestore, 'fast-food');
 
-  onSnapshot(menuCollectionRef, (snapshot) => 
+  onSnapshot(menuCollectionRef, async (snapshot) => 
   {
 
-                  snapshot.docChanges().forEach((change) => 
+                  for (const change of snapshot.docChanges())
                   {
 
                             if (change.type === 'added' || change.type === 'modified') 
@@ -103,7 +103,7 @@ listenForMenuChanges()
 
                             }
 
-                  });
+                  };
 
   });
   

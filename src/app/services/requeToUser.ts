@@ -168,7 +168,56 @@ async updateUser(userToGet: Users,nbrTotalUser:number): Promise<Users|null>{
   }
 }
 
-  
+async updateCmdUser(userToAdd: Users,idx:string): Promise<Users|null>   
+{
+
+    	let userToReturn : Users | null =null
+
+	try {
+      
+
+   	let userGet = await this.getUsersFromFirestore(idx)
+
+
+	// for (const cmdToUpdate of userToAdd.cmd) 
+	// {
+		
+	// 	const isCmdExist = userGet?.cmd.some(cmd => cmd.idCmd === cmdToUpdate.idCmd && cmd.uidUser === cmdToUpdate.uidUser  && cmd.staut ===  'IsWaitingActionFromFastFood'  );
+ 	// 	if (!isCmdExist) 
+	// 	{
+
+
+	// 			userGet?.cmd.push(cmdToUpdate);  
+
+
+	// 	} 
+
+	// }
+
+	userToReturn = await this.addUserToFirestore(userToAdd!,idx)
+	this.data.user = userToReturn!
+	return userToReturn
+	
+	
+    } catch (error) 
+    {
+
+	console.log(error);
+	throw error;
+
+    }
+
+
+  }
+
+                             
+
+                                  
+                                                               
+                                    
+                            
+                            
+
 
 async getUsersFromFirestore(idx:string): Promise<Users|null> {
   const firestore = getFirestore();

@@ -16,6 +16,8 @@ ion-col{
      --padding-start: 8px;
     --inner-padding-end: 0;
     --inner-border-width: 0px 0px 0 0px;
+    transition-duration: 1s;
+    transform: translateX(-100%);
 }
 .ctn-add {
   height: 100%;

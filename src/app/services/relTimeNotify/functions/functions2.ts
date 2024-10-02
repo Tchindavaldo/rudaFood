@@ -6,18 +6,10 @@ import { FastFood } from "src/app/data/fastFood";
 import { requeToUser } from "../../requeToUser";
 import { Users } from "src/app/data/Users";
 
-export async function updateUserdCmdAfterFastFoodNewAction(FastfoodGet: any,dataServies:DataService,requeteToUser:requeToUser)
-{
+export async function updateUserdCmdAfterFastFoodNewAction(FastfoodGet: any, dataServies: DataService, requeteToUser: requeToUser) {
 
-
-
-
-       
-       let cmdTab:Commande[] = [];
-       let userUpdate:Users | null = null;
-       const Fastfood = FastfoodGet.FastFood
-
-       console.log('document fastfood notify from backend',FastfoodGet);    
+    const Fastfood = FastfoodGet.FastFood;
+    let FastFoodCmd: Commande[] = Fastfood.commandeFastFood;
 
 
 
@@ -28,66 +20,54 @@ export async function updateUserdCmdAfterFastFoodNewAction(FastfoodGet: any,data
 
 
 
-       if (Fastfood.proprietaire.infos.uid === dataServies.user.infos.uid )
+
+    if (Fastfood.proprietaire.infos.uid === dataServies.user.infos.uid) 
        {
 
-              if (Fastfood.commande === undefined )
+              if (Fastfood.commandeFastFood === undefined)
               {
 
-                     dataServies.FastFood.commande = []
-                     console.log('valeur du tableau de commande du fastfood mis a jour localement',dataServies.FastFood);   
-                     
-                     
+                     dataServies.FastFood.commande = [];
+                     console.log('Le tableau de commande du fastfood a été mis à jour localement', dataServies.FastFood);   
+
               }
-              
+
        }
-              
-              
-              
 
 
 
-       
-            
 
-       console.log('commande de l\'utilisateur sur lequel on va boucler',dataServies.user.cmd);
-       
-       for (const userCmd of dataServies.user.cmd)
+
+
+
+
+
+
+
+    // Utiliser la commande du user pour effectuer des mises à jour
+    let updateNeeded = false;
+
+    for (const userCmd of dataServies.user.cmd)
        {
-              
-              for (const FastfoodCmd of Fastfood.commandeFastFood)
+              FastFoodCmd.forEach(fastFoodCmd => 
               {
-                     
-                     if (FastfoodCmd.uidUser === userCmd.uidUser)
-                     {
 
-                            if (userCmd.staut === 'isPendingToFastFood')
-                            {
+                     // Vérifiez les commandes du fastfood pour voir si elles doivent être mises à jour
+                     if (fastFoodCmd.uidUser === userCmd.uidUser && fastFoodCmd.idCmd === userCmd.idCmd 
+                     && fastFoodCmd.staut === 'isPendingToFastFood' && userCmd.staut !== 'IsWaitingActionFromFastFood') {
 
-                                   console.log('user uid de la commande chez le fastfd ',FastfoodCmd.uidUser);  
-                                   console.log('user uid de la commande chez le cliend ',userCmd.uidUser);  
-                                   userCmd.staut = 'IsWaitingActionFromFastFood'    
-                                   console.log('valeur du user apres mofigication du staut ',userCmd,'id de l\'utilisateur a uploader',dataServies.idxUser);   
-                            
-                            }else 
-                            {
 
-                                   console.log("le statut est deja en attente",userCmd.staut);
-                        
-                            } 
-                            
-                     
-                     }else
-                     {
+                     // Mettre à jour le statut de la commande de l'utilisateur
+                     userCmd.staut = 'IsWaitingActionFromFastFood';
+                     console.log('Commande mise à jour :', userCmd);
 
-                            console.log("la commande n'est pas pour ce client");
-                        
+
+                     // Indique qu'une mise à jour est nécessaire
+                     updateNeeded = true;
                      }
 
-              };
-
-       };
-
+              });
+       }
 
 
 
@@ -98,14 +78,21 @@ export async function updateUserdCmdAfterFastFoodNewAction(FastfoodGet: any,data
 
 
 
-       console.log('valeur du user avant l\'update ',userUpdate,'id de l\'utilisateur a uploader',dataServies.idxUser.toString());   
 
-       
-       userUpdate = await  requeteToUser.addUserToFirestore(dataServies.user,dataServies.idxUser.toString())
-       console.log('fast food mis a jour ',userUpdate);   
-       
-       
+    // Si une mise à jour est nécessaire, mettez à jour l'utilisateur
+    if (updateNeeded)       
+       {
+                     
+              console.log('Valeur des commandes de l\'utilisateur avant l\'update', dataServies.user.cmd); 
 
 
-              
+              const userUpdate = await requeteToUser.updateCmdUser(dataServies.user, dataServies.idxUser.toString());
+              console.log('Valeur des commandes de l\'utilisateur après l\'update', userUpdate!.cmd);
+
+       } else
+       {
+
+              console.log('Aucune commande n\'a été mise à jour.');
+
+       }
 }

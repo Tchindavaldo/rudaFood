@@ -22,14 +22,24 @@ export async function updateFastfoodCmdAfterUserNewCmd(userGet: any,dataServies:
 
 
 
+
+
+
+
+
+
+
+
+
+
        if (user.infos.uid === dataServies.user.infos.uid )
        {
 
-              if (user.commande === undefined )
+              if (user.commande.length === 0 )
               {
 
                      dataServies.user.cmd = []
-                     console.log('valeur du tableau de commande de l\'utilisateur mis a jour localement');   
+                     // console.log('valeur du tableau de commande de l\'utilisateur mis a jour localement');   
                      
                      
               }
@@ -44,53 +54,136 @@ export async function updateFastfoodCmdAfterUserNewCmd(userGet: any,dataServies:
 
 
 
-
-      if (dataServies.user.isMarchand)
-       {
+       
 
 
 
 
 
-              
-              let cmdTab:Commande[] = [];
-              let fastFoodUpdate:FastFood | null;
 
-              console.log('user',userGet);   
-              console.log('fast food',dataServies.FastFood);
-              
-              
 
+
+
+
+
+
+
+
+
+
+
+
+if (dataServies.user.isMarchand) 
+{
+    let cmdTab: Commande[] = [];
+    let fastFoodUpdate: FastFood | null;
+    let fastfoodCmdTab = dataServies.FastFood.commande;
+
+//     console.log('COMMANDE DE L\'UTILISATEUR APRES AJOUT DE COMMANDES', user.commande);
+
+    // Si le tableau de commande du fast-food est vide
+    if (fastfoodCmdTab.length === 0) 
+    {
+       //  console.log('Tableau local de commandes de fast-food vide');
+        // Ajouter directement toutes les commandes de l'utilisateur
+        fastFoodUpdate = await requeteToFasFood.addCmdToFastFood(user.commande, dataServies.FastFood.id.toString());
+        compareAndAssign(fastFoodUpdate, fastfoodCmdTab);
+       //  console.log('Ajout direct ', fastFoodUpdate);
+    } 
+    else 
+    {
+        // Vérification pour chaque commande utilisateur si elle doit être ajoutée
+        for (const userCmd of user.commande) 
+        {
+            if (userCmd.idFastFood === dataServies.FastFood.id && userCmd.staut === 'isPendingToFastFood') 
+            {
+                // Vérifier si la commande est déjà présente dans fastfoodCmdTab
+                const cmdAlreadyInFastFoodTab = fastfoodCmdTab.some(tempFastfoodCmd => tempFastfoodCmd.idCmd === userCmd.idCmd);
+
+                if (!cmdAlreadyInFastFoodTab) 
+                {
+                    // Ajouter les commandes non présentes au tableau cmdTab
+                    cmdTab.push(userCmd);
+              //       console.log('Commande non présente dans le tableau de commandes du fast-food, ajout au tableau', userCmd);
+                }
+            }
+        }
+
+        // Si des commandes doivent être ajoutées
+        if (cmdTab.length !== 0) 
+        {
+            fastFoodUpdate = await requeteToFasFood.addCmdToFastFood(cmdTab, dataServies.FastFood.id.toString());
+       //      console.log('Commandes ajoutées au fast-food', fastFoodUpdate);
+
+            compareAndAssign(fastFoodUpdate, fastfoodCmdTab);
+       //      console.log('Fast-food mis à jour', fastFoodUpdate);
+
+            cmdTab = [];  // Réinitialiser cmdTab après l'ajout
+        }
+    }
+}
+
+
+
+
+}
 
 
        
-            
 
 
 
-              for (const userCmd of user.commande)
+
+
+
+
+
+async function compareAndAssign(fastFoodUpdate:FastFood | null, localCmdTab:Commande[])
+{
+
+       const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+       if (localCmdTab.length === 0 ) 
+       {
+                      await delay(20);
+
+
+              for (const tempCmdGet of fastFoodUpdate!.commande) 
               {
                      
-                     if (userCmd.idFastFood === dataServies.FastFood.id && userCmd.staut === 'isPendingToFastFood')
-                     {
-
-                            cmdTab.push(userCmd)
-                            fastFoodUpdate = await  requeteToFasFood.addCmdToFastFood(cmdTab,dataServies.FastFood.id.toString())
-                            console.log('fast food mis a jour ',fastFoodUpdate);       
                      
-                     }else
-                     {
 
-                            console.log("la commande n'est pas pour ce fastfood");
+                            localCmdTab.unshift(tempCmdGet)
                             
+                      
 
+              }
+              
+       }else
+       {
+              
+              for (const tempCmdGet of fastFoodUpdate!.commande) 
+              {
+
+
+                             await delay(20);
+
+                     const isCmdExist = localCmdTab.some(tempCmdLocal => tempCmdLocal.uidUser === tempCmdGet.uidUser && tempCmdLocal.idCmd === tempCmdGet.idCmd )
+
+                                                               
+                     if (!isCmdExist) 
+                     {
+                            
+                          
+
+                                   localCmdTab.unshift(tempCmdGet)
+
+                                   
+                           
                      }
 
               };
-            
        }
 
 
-
-              
 }

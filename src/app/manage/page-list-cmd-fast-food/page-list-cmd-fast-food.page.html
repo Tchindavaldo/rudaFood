@@ -112,6 +112,7 @@
     <ion-infinite-scroll class="infinitScroll2">
       <ion-list>
         <app-cmd-action
+        (click)="addDataToDefaultCmdTab()"
           [uid]="tempPendingCmd[idx].uidUser"
           [idx]="tempPendingCmd[idx].idCmd"
           action="isProccess"

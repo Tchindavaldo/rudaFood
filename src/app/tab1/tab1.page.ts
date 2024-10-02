@@ -116,8 +116,10 @@ export class Tab1Page implements OnInit, AfterViewChecked {
     this.getGeneralDataUser();
     // this.notify.getMenuUpdates;
     this.photo = this.dataGet.photoProfil;
-    this.cmdAddedService.listenForUserChanges();
-    this.cmdAddedService.listenForMenuChanges();
+    
+      
+    this.requeToFastFood.getFastFoodCorespond()
+    this.listnerNotify()
     const app = initializeApp(environment.firebase);
     console.log('user get onInit  ', this.DataFastFood.user);
 
@@ -125,6 +127,14 @@ export class Tab1Page implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     // console.log('general data  user ',this.DataFastFood.generalDataUser);
+  }
+  async listnerNotify()
+  {
+
+    await this.cmdAddedService.listenForUserChanges();
+    await this.cmdAddedService.listenForMenuChanges();
+    
+
   }
   sendNotif() {}
   public showBottomCard(actions: string, i: number, ii: number) {

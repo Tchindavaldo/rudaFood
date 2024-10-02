@@ -11,6 +11,7 @@ import { Menu } from 'src/app/data/menu';
 import { showPages } from 'src/app/services/showPages';
 import { ToastButton, ToastController } from '@ionic/angular';
 import { requeToFastFood } from 'src/app/services/requeToFastFood';
+import { defaultData } from 'src/app/services/datasDefault.service';
 
 @Component({
   selector: 'app-page-list-cmd-fast-food',
@@ -47,41 +48,156 @@ export class PageListCmdFastFoodPage implements OnInit , AfterContentChecked {
   idMenuClick:number=0;
    cardIsShow!:boolean
    marginGrid = "0 0 45px 0" 
+       defaultCmdTabForTest = this.defaultData.cmdTab
+
+
+
+
+
+
+
+
 
 
   constructor(
-    private router:Router,
-    public dataGet:DataService,
-    public showPages : showPages,
-    public cardControle:CardService,
-    private requeToMenu:requeToMenu,
-    private toastController:  ToastController, 
-    public requeteToFastfood :requeToFastFood,
+
+	private router:Router,
+	public dataGet:DataService,
+	public showPages : showPages,
+	public cardControle:CardService,
+	private requeToMenu:requeToMenu,
+
+	private defaultData: defaultData,
+	private toastController:  ToastController, 
+	public requeteToFastfood :requeToFastFood,
      
   ) { }
 
-  ngOnInit() {
-    const height = window.innerHeight
-    if (height<650) {
-      this.marginGrid = "0 0 25px 0" 
 
-    }
-    console.log('height', height);
-    
-    this.menuTab2=[]
-    // this.getData()
 
-    
-   this.dataGet.menuTab = [new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo')]
-   this.menuTab = this.dataGet.menuTab
-   this.menuTab2 = this.dataGet.menuTab
-    this.idMenuClick=0
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ngOnInit() 
+  {
    
-  this.redirectStore()
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+       this.idMenuClick=0      
+       const height = window.innerHeight
+       this.menuTab = this.dataGet.menuTab
+       this.menuTab2 = this.dataGet.menuTab
+       this.dataGet.menuTab=[      new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo'),
+                                   new Menu('menu1',0,0,0,'option1','option2','option3','photo','dispo')
+                            ]
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+       this.loadData() 
+       this.redirectStore()
+
+
+
+
+
+
+       
+
+
+
+       
+
+
+
+
+       if (height<650) 
+       {
+       
+              this.marginGrid = "0 0 25px 0" 
+
+       } 
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+       
   
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   ngAfterContentChecked(): void {
   
@@ -182,6 +298,7 @@ loadData() {
   // if (this.dataGet.user) {
     // this.dataGet.user.cmd.forEach(element => { 
       this.tempFatsFoodCmdTab = this.dataGet.FastFood.commande
+//       this.tempFatsFoodCmdTab = this.defaultCmdTabForTest
       this.tempFatsFoodCmdTab.forEach(element => {
         if (element.staut === 'isPendingToFastFood') {
           this.tempPendingCmd.push(element);
@@ -209,6 +326,13 @@ loadData() {
   
 }
 
+addDataToDefaultCmdTab()
+{
+  const tempCmd = JSON.parse(JSON.stringify(this.defaultData.cmd)); // Copie profonde
+       tempCmd.menu.prix1 += 500
+       this.defaultCmdTabForTest.unshift(tempCmd) 
+}
+
 redirect(path:string){
   this.router.navigate([path])
 
@@ -222,33 +346,48 @@ changeMenu(){
 
 
   
-redirectStore(){
-  try {
-    console.log(this.dataGet.FastFoodTab);
+redirectStore()
+{
+       try {
+      
 
-    
- this.requeteToFastfood.getFastFoodCorespond()
+              
+              if (!this.dataGet.user.isMarchand)
+              {
+                     
+                     this.presentToast('bottom','vous n\'estes pas un marchand veuiller creer un comptes pour un acces a votre boutique')
 
- 
-    if (!this.dataGet.user.isMarchand) {
-      this.presentToast('bottom','vous n\'estes pas un marchand veuiller creer un comptes pour un acces a votre boutique')
-
-    }
+              }
 
 
-    // if (this.dataGet.user.isMarchand && !this.managerFastFoodFound) {
-    if (this.dataGet.user.isMarchand)
-    {
+              // if (this.dataGet.user.isMarchand && !this.managerFastFoodFound) {
+              if (this.dataGet.user.isMarchand)
+              {
 
-          this.presentToast('bottom','Probleme lors de la recuperation de votre compte marchand veuillez contacter RudaFood')
-    
-    }
+                     this.presentToast('bottom','Bienvenu marchand  '+this.dataGet.user.infos.prenom)
+              
+              }
 
-  } catch (error) {
-    console.log('errrrrrrrrrrrrrrrrrrr',error);
-    
-  }
+       } catch (error) 
+       {
+
+              console.log('errrrrrrrrrrrrrrrrrrr',error);
+              this.presentToast('bottom','Probleme lors de la recuperation de votre compte marchand veuillez contacter RudaFood')
+
+       }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
